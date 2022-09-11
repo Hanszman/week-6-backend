@@ -1,5 +1,6 @@
 // Declaração de Constantes
 const mongoose = require('mongoose');
+const path = require('path');
 const express = require('express');
 const app = express();
 
@@ -11,6 +12,9 @@ mongoose.connect('mongodb+srv://omnistack:omnistack@cluster0.myxkemn.mongodb.net
 // Aplicação pode receber body tanto em formato de json como em urlencoded
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// Toda vez que receber uma requisição na rota files, utiliza o static para acessar os arquivos no caminho da pasta tmp
+app.use('/files', express.static(path.resolve(__dirname, '..', 'tmp')))
 
 // Utilizando arquivo de rotas
 app.use(require('./routes'));
