@@ -1,12 +1,30 @@
 // Declaração de Constantes
+const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
-const express = require('express');
+
+// Utilizando o Express
 const app = express();
+
+// Utilizando o Socket.io que serve para ouvir requisições tanto em protocolo http como em websocket
+const server = require('http').Server(app);
+const io = require('socket.io')(server);
+io.on('connection', socket => { // Serve para separar em salas os sockets, para cada usuário ter acesso somente a sua própria box com seus próprios files
+    socket.on('connectRoom', box => { // O socket é a representação da conexão do usuário com a parte de realtime do servidor
+        socket.join(box); // A partir disso o usuário ficará isolados do restante dos outros usuários que estão na aplicação
+    })
+})
 
 // Conexão com o MongoDB
 mongoose.connect('mongodb+srv://omnistack:omnistack@cluster0.myxkemn.mongodb.net/omnistack?retryWrites=true&w=majority', {
     useNewUrlParser: true
+});
+
+// Middleware global para o socket.io
+app.use((req, res, next) => {
+    req.io = io;
+    // O next vai processar o middleware e vai passar pro restante das rotas.
+    return next(); // Se não colocar o next, todas as requisições parariam nesse momento do código
 });
 
 // Aplicação pode receber body tanto em formato de json como em urlencoded
@@ -19,5 +37,5 @@ app.use('/files', express.static(path.resolve(__dirname, '..', 'tmp')))
 // Utilizando arquivo de rotas
 app.use(require('./routes'));
 
-// Execução da Aplicação na Porta 3333
-app.listen(3333);
+// Execução da Aplicação na Porta 3333 utilizando o server do socket.io
+server.listen(3333);

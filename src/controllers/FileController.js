@@ -13,6 +13,7 @@ class FileController {
         });
         box.files.push(file);
         await box.save();
+        req.io.sockets.in(box._id).emit('file', file); // Todos os usuários que estão conectados nessa box com esse id recebem os dados desse arquivo
         return res.json(file);
     }
 }
