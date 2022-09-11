@@ -1,8 +1,8 @@
 const express = require('express');
 const routes = express.Router();
 
-routes.get('/users', (req, res) => {
-    return res.send('Hello World');
+routes.get('/teste', (req, res) => {
+    return res.send('Hello Rocket!');
 });
 
 module.exports = routes;
