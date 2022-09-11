@@ -8,8 +8,12 @@ mongoose.connect('mongodb+srv://omnistack:omnistack@cluster0.myxkemn.mongodb.net
     useNewUrlParser: true
 });
 
-// Execução da Aplicação
+// Aplicação pode receber body tanto em formato de json como em urlencoded
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// Utilizando arquivo de rotas
 app.use(require('./routes'));
+
+// Execução da Aplicação na Porta 3333
 app.listen(3333);

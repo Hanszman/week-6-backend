@@ -12,7 +12,7 @@ module.exports = {
             cb(null, path.resolve(__dirname, '..', '..', 'tmp')); // Função de callback: primeiro parâmetro é o de erro, segundo parâmetro é o caminho
         },
         filename: (req, file, cb) => { // Nome único para o arquivo
-            crypto.randomBytes(16, (err, hase) => { // 16 bytes de caracteres aleatórios, depois um callback
+            crypto.randomBytes(16, (err, hash) => { // 16 bytes de caracteres aleatórios, depois um callback
                 if (err) cb(err); // Se der erro, envio de erro no callback
 
                 file.key = `${hash.toString('hex')}-${file.originalname}`; // hash-nomeunicodoarquivo.extensão

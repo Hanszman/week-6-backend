@@ -12,7 +12,7 @@ routes.get('/teste', (req, res) => { // Rota de Teste
 });
 
 routes.post('/boxes', BoxController.store); // Rota de Store do Boxes
-routes.post('/files', // Rota de Store do Files
+routes.post('boxes/:id/files', // Rota de Store do Files
     multer(multerConfig).single('file'), // Passando apenas um arquivo por vez com o single
     FileController.store
 );
