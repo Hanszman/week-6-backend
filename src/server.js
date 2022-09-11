@@ -1,10 +1,14 @@
 // Declaração de Constantes
-const express = require('express');
-const mongoose = require('mongoose');
-const path = require('path');
+const express = require('express'); // Middleware do Node
+const mongoose = require('mongoose'); // Biblioteca do Node o MongoDB
+const path = require('path'); // Biblioteca do Node para caminhos
+const cors = require('cors'); // Módulo que determina quem vai poder acessar a aplicação, sem ele o frontend não consegue acessar o backend estando em um domínio diferente
 
-// Utilizando o Express
+// Definição do app utilizando o Express
 const app = express();
+
+// Definição do cors
+app.use(cors());
 
 // Utilizando o Socket.io que serve para ouvir requisições tanto em protocolo http como em websocket
 const server = require('http').Server(app);
