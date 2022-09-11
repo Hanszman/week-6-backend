@@ -15,4 +15,5 @@ const File = new mongoose.Schema({
     timestamps: true // Faz com que sejam criados os campos "Created_At" e "Updated_At" em cada registro do Schema
 });
 
+// Exportação
 module.exports = mongoose.model('File', File);

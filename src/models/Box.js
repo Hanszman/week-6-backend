@@ -1,3 +1,4 @@
+// Declaração de Constantes
 const mongoose = require('mongoose');
 
 // Criação do Schema de Box (Nos Bancos Não-Relacionais, os Schemas são como as Tabelas)
@@ -12,4 +13,5 @@ const Box = new mongoose.Schema({
     timestamps: true // Faz com que sejam criados os campos "Created_At" e "Updated_At" em cada registro do Schema
 });
 
+// Exportação
 module.exports = mongoose.model('Box', Box);
