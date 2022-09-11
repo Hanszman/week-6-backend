@@ -19,7 +19,7 @@ const File = new mongoose.Schema({
 
 // Campo Virtual: serve para retornar para o frontend uma url que redireciona para o arquivo salvo
 File.virtual('url').get(function() { // O campo virtual não existe no banco de dados, porém ele existe no lado do backend
-    const url = proccess.env.URL || 'http://localhost:3333';
+    const url = process.env.URL || 'http://localhost:3333';
     return `${url}/files/${encodeURIComponent(this.path)}`;
 });
 
