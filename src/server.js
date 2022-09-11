@@ -42,4 +42,4 @@ app.use('/files', express.static(path.resolve(__dirname, '..', 'tmp')))
 app.use(require('./routes'));
 
 // Execução da Aplicação na Porta 3333 utilizando o server do socket.io
-server.listen(3333);
+server.listen(proccess.env.PORT || 3333);
